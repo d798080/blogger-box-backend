@@ -4,7 +4,7 @@ import com.dauphine.blogger.models.Post;
 
 import java.util.List;
 import java.util.UUID;
-
+import com.dauphine.blogger.repositories.PostRepository;
 public interface PostService {
 
     List<Post> getAllByCategoryId(UUID categoryId);
