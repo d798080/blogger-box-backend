@@ -63,4 +63,9 @@ public class PostServiceImpl implements PostService {
         repository.deleteById(id);
         return true;
     }
+
+    @Override
+    public List<Post> getAllLikeValue(String value) {
+        return repository.findAllByTitleOrContent(value);
+    }
 }

@@ -17,10 +17,10 @@ public class PostController {
         this.service = service;
     }
 
-    @GetMapping
-    public List<Post> retrieveAllPosts() {
-        return service.getAll();
-    }
+    //@GetMapping
+  //  public List<Post> retrieveAllPosts() {
+      //  return service.getAll();
+    //}
 
     @GetMapping("/{id}")
     public Post retrievePostById(@PathVariable UUID id) {
@@ -45,5 +45,14 @@ public class PostController {
     @DeleteMapping("/{id}")
     public boolean deletePost(@PathVariable UUID id) {
         return service.deleteById(id);
+    }
+
+    @GetMapping
+    public List<Post> getAll(@RequestParam(required = false) String value) {
+
+        List<Post> posts = value == null || value.isBlank()
+                ? service.getAll()
+                : service.getAllLikeValue(value);
+        return posts;
     }
 }

@@ -18,4 +18,6 @@ public interface PostService {
     Post update(UUID id, String title, String content);
 
     boolean deleteById(UUID id);
+
+    List<Post> getAllLikeValue(String value);
 }
