@@ -1,5 +1,6 @@
 package com.dauphine.blogger.controllers;
 
+import com.dauphine.blogger.exceptions.CategoryNotFoundByIdException;
 import com.dauphine.blogger.models.Category;
 import com.dauphine.blogger.services.CategoryService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -26,11 +27,17 @@ public class CategoryController {
        // return service.getAll();
     //}
 
-    @GetMapping("/{id}")
-    public Category retrieveCategoryById(@PathVariable UUID id) {
-        return categoryService.getById(id);
-    }
+    //@GetMapping("/{id}")
+    //public Category retrieveCategoryById(@PathVariable UUID id) {
+        //return categoryService.getById(id);
+    //}
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Category> retrieveCategoryById(@PathVariable UUID id)
+            throws CategoryNotFoundByIdException {
+        Category category = categoryService.getById(id);
+        return ResponseEntity.ok(category);
+    }
 
 
     //@PostMapping

@@ -3,6 +3,7 @@ package com.dauphine.blogger.controllers;
 import com.dauphine.blogger.models.Post;
 import com.dauphine.blogger.services.PostService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.UUID;
@@ -32,9 +33,15 @@ public class PostController {
         return service.getAllByCategoryId(categoryId);
     }
 
-    @PostMapping
+    /*@PostMapping
     public Post createPost(@RequestBody String title, @RequestParam String content, @RequestParam UUID categoryId) {
         return service.create(title, content, categoryId);
+    }*/
+
+    @PostMapping
+    public Post createPost(@RequestBody Post request) {
+        return service.create(request.getTitle(),request.getContent(),request.getCategory().getId()
+        );
     }
 
     @PutMapping("/{id}")
