@@ -21,7 +21,8 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post getById(UUID id) {
-        return repository.findById(id).orElseThrow(() -> new PostNotFoundByIdException(id.toString()));
+        return repository.findById(id)
+                .orElseThrow(() -> new PostNotFoundByIdException(id.toString()));
     }
 
     @Override
@@ -55,10 +56,6 @@ public class PostServiceImpl implements PostService {
     @Override
     public Post update(UUID id, String title, String content) {
         Post post = getById(id);
-
-        if (post == null) {
-            return null;
-        }
 
         post.setTitle(title);
         post.setContent(content);

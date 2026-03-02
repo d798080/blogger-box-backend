@@ -32,6 +32,7 @@ public class CategoryController {
         //return categoryService.getById(id);
     //}
 
+
     @GetMapping("/{id}")
     public ResponseEntity<Category> retrieveCategoryById(@PathVariable UUID id)
             throws CategoryNotFoundByIdException {
